@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "544166817212",
+    "project_id": "my-portall",
+    "storage_bucket": "my-portall.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544166817212:android:0a81165f2f87c0ab854fb9",
+        "android_client_info": {
+          "package_name": "com.example.onboarding"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "544166817212-8noog9udkdritk01v2vp4iolegn7ra5a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.onboarding",
+            "certificate_hash": "811f1191fd5b94959844ee45d9fb97284d912343"
+          }
+        },
+        {
+          "client_id": "544166817212-40mugftk3fu1iduauiiq4m6hmpa2abs2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgpYnxE40di-BX5P2UpUlNREwA9Z1WjFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "544166817212-40mugftk3fu1iduauiiq4m6hmpa2abs2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
