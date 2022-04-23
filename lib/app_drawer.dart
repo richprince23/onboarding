@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:getwidget/components/drawer/gf_drawer.dart';
 import 'package:getwidget/components/drawer/gf_drawer_header.dart';
-import 'constants.dart' as Const;
+import 'constants.dart' as constants;
 
 class appDrawer extends StatelessWidget {
   const appDrawer({
@@ -19,7 +19,7 @@ class appDrawer extends StatelessWidget {
           // GFDrawerHeader()
           UserAccountsDrawerHeader(
               decoration: BoxDecoration(
-                color: Const.color,
+                color: constants.color,
               ),
               currentAccountPicture: const CircleAvatar(
                 backgroundImage: AssetImage("chef.png"),

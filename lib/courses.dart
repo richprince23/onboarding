@@ -1,12 +1,9 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:onboarding/constants.dart' as Const;
+import 'package:onboarding/constants.dart' as constants;
 
 class ManageCourses extends StatefulWidget {
-  ManageCourses({Key? key}) : super(key: key);
+  const ManageCourses({Key? key}) : super(key: key);
 
   @override
   State<ManageCourses> createState() => _ManageCoursesState();
@@ -25,14 +22,14 @@ class _ManageCoursesState extends State<ManageCourses> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () {},
         ),
-        backgroundColor: Const.color,
+        backgroundColor: constants.color,
         elevation: 0,
         actions: [
           IconButton(
             onPressed: () {
               showAddCourseDialog(context);
             },
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             tooltip: "Add new course",
           )
         ],
@@ -47,7 +44,7 @@ class _ManageCoursesState extends State<ManageCourses> {
                 padding: const EdgeInsets.all(8),
                 margin: const EdgeInsets.symmetric(vertical: 2),
                 // style: ListTileStyle.list,
-                // textColor: Const.color,
+                // textColor: constants.color,
                 subTitle: Text(index.toString()),
                 titleText: sems[index], // replace with course code and semester
                 title: Text(
@@ -148,7 +145,8 @@ class CustomField extends StatelessWidget {
       children: [
         TextFormField(
           decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
               labelText: title,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onboarding/constants.dart' as Const;
+import 'package:onboarding/constants.dart' as constants;
 import 'package:onboarding/login_screen.dart';
 import 'package:onboarding/onBoardingScreen.dart';
 
@@ -16,7 +16,7 @@ class WelcomeScreen extends StatelessWidget {
         centerTitle: true,
       ),
       drawer: Drawer(
-        backgroundColor: Const.color,
+        backgroundColor: constants.color,
         child: ListView(
           padding: const EdgeInsets.only(left: 30, top: 20, right: 30),
           children: [
@@ -118,7 +118,7 @@ class WelcomeScreen extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Const.color,
+                constants.color,
                 Colors.purple,
               ],
             )),

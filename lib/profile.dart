@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:onboarding/constants.dart' as Const;
+import 'package:onboarding/constants.dart' as constants;
+import 'package:path_provider/path_provider.dart' as path;
 
 class Profile extends StatefulWidget {
   Profile({Key? key}) : super(key: key);
@@ -15,6 +17,7 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   ImagePicker imagePicker = ImagePicker();
+
   final keys = GlobalKey<FormState>();
 
   final List<String> levels = [
@@ -37,7 +40,7 @@ class _ProfileState extends State<Profile> {
   TextEditingController course = TextEditingController();
   TextEditingController level = TextEditingController();
 
-  File? selectedImage;
+  File? selectedImage = null;
 
   Future getImagefromGallery() async {
     try {
@@ -46,6 +49,7 @@ class _ProfileState extends State<Profile> {
       if (image == null) return;
 
       final tempImage = File(image.path);
+
       // selectedImage = tempImage;
       // var file = await File(image.path).copy("/assets");
       // print(image.path);
@@ -59,7 +63,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Const.color,
+        backgroundColor: constants.color,
         elevation: 0,
         title: Text("Update Profile"),
         centerTitle: true,
@@ -82,9 +86,8 @@ class _ProfileState extends State<Profile> {
                   children: [
                     selectedImage != null
                         ? CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              selectedImage!.path,
-                            ),
+                            // backgroundImage: createImage(),
+                            child: createImage(context),
                             radius: 50,
                           )
                         : CircleAvatar(
@@ -176,6 +179,7 @@ class _ProfileState extends State<Profile> {
                             }
                           },
                         ),
+
                         Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
@@ -209,6 +213,17 @@ class _ProfileState extends State<Profile> {
         ),
       ),
     );
+  }
+
+  createImage(BuildContext context) {
+    if (Platform.operatingSystem == "android" ||
+        Platform.operatingSystem == "ios") {
+      return AssetImage(
+        selectedImage.toString(),
+      );
+    } else {
+      return NetworkImage(selectedImage!.path);
+    }
   }
 }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onboarding/constants.dart' as Const;
+import 'package:onboarding/constants.dart' as constants;
 import 'package:onboarding/homepage.dart';
 // import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           Container(
               height: MediaQuery.of(context).size.height,
-              decoration: Const.boxDecoration),
+              decoration: constants.boxDecoration),
           Center(
             // child: Image(image: AssetImage("chef.png")),
             child: SizedBox(

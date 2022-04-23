@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:onboarding/homepage.dart';
-import 'constants.dart' as Const;
+import 'constants.dart' as constants;
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({
@@ -44,7 +44,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         children: [
           Container(
               height: MediaQuery.of(context).size.height,
-              decoration: Const.boxDecoration),
+              decoration: constants.boxDecoration),
           Center(
             // child: Image(image: AssetImage("chef.png")),
             child: SizedBox(

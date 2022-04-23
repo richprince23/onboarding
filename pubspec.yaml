@@ -47,6 +47,17 @@ dependencies:
 
   getwidget: ^2.0.5
 
+  firebase_storage: ^10.2.13
+
+  permission_handler: ^9.2.0
+
+  path: ^1.8.0
+
+  flutter_cached_pdfview: ^0.4.1
+
+  sqflite: ^2.0.2+1
+
+  font_awesome_flutter: ^10.1.0
 
 dev_dependencies:
   flutter_test:
