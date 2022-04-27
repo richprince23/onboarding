@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:onboarding/login_screen.dart';
+import 'package:onboarding/profile.dart';
 import 'app_head.dart';
 import 'app_drawer.dart';
 import 'constants.dart';
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
       color: Colors.black,
       fontFamily: "Raleway",
       fontSize: 14,
-      fontWeight: FontWeight.w500);
+      fontWeight: FontWeight.w400);
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +35,7 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         backgroundColor: color,
         title: const appHead(),
+        // toolbarHeight: 50,
       ),
       // drawer: Drawer(backgroundColor: color, child: _drawer()),
       drawer: Drawer(backgroundColor: color, child: appDrawer()),
@@ -50,132 +52,149 @@ class _HomePageState extends State<HomePage> {
           //         alignment: Alignment.bottomCenter),
           //   ),
           // ),
-          Container(
-            // width: MediaQuery.of(context).size.width * 0.8,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            margin: const EdgeInsets.only(top: 40),
-            child: GridView.count(
-              crossAxisCount: 2,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-              primary: false,
-              children: <Widget>[
-                Card(
-                  elevation: 2,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginScreen()));
-                    },
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          const Image(
-                            image: AssetImage("contact_details_100px.png"),
-                            width: 100,
-                          ),
-                          Text(
-                            "My Profile",
-                            style: cardTextStyle,
-                          ),
-                        ]),
+          SafeArea(
+            child: Container(
+              // width: MediaQuery.of(context).size.width * 0.8,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.only(top: 40),
+              child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
+                primary: false,
+                children: <Widget>[
+                  Card(
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Profile()));
+                      },
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Image.asset(
+                              "assets/account_100px.png",
+                              width: 100,
+                            ),
+                            Text(
+                              "My Profile",
+                              style: cardTextStyle,
+                            ),
+                          ]),
+                    ),
                   ),
-                ),
-                Card(
-                  elevation: 2,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        const Image(
-                          image: AssetImage("course_100px.png"),
-                          width: 100,
-                        ),
-                        Text(
-                          "Courses",
-                          style: cardTextStyle,
-                        ),
-                      ]),
-                ),
-                Card(
-                  elevation: 2,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        const Image(
-                          image: AssetImage("exam_100px.png"),
-                          width: 100,
-                        ),
-                        Text(
-                          "Results & CGPA",
-                          style: cardTextStyle,
-                        ),
-                      ]),
-                ),
-                Card(
-                  elevation: 2,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        const Image(
-                          image: AssetImage("timetable_100px.png"),
-                          width: 100,
-                        ),
-                        Text(
-                          "Timetable",
-                          style: cardTextStyle,
-                        ),
-                      ]),
-                ),
-                Card(
-                  elevation: 2,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        const Image(
-                          image: AssetImage("note_100px.png"),
-                          width: 100,
-                        ),
-                        Text(
-                          "My Notes",
-                          style: cardTextStyle,
-                        ),
-                      ]),
-                ),
-                Card(
-                  elevation: 2,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        const Image(
-                          image: AssetImage("book_100px.png"),
-                          width: 100,
-                        ),
-                        Text(
-                          "Lecture Notes",
-                          style: cardTextStyle,
-                        ),
-                      ]),
-                ),
-              ],
+                  Card(
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/courses');
+                      },
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            const Image(
+                              image: AssetImage("assets/course_100px.png"),
+                              width: 100,
+                            ),
+                            Text(
+                              "Courses",
+                              style: cardTextStyle,
+                            ),
+                          ]),
+                    ),
+                  ),
+                  Card(
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            const Image(
+                              image: AssetImage("assets/exam_100px.png"),
+                              width: 100,
+                            ),
+                            Text(
+                              "Results & CGPA",
+                              style: cardTextStyle,
+                            ),
+                          ]),
+                    ),
+                  ),
+                  Card(
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            const Image(
+                              image: AssetImage("assets/timetable_100px.png"),
+                              width: 100,
+                            ),
+                            Text(
+                              "Timetable",
+                              style: cardTextStyle,
+                            ),
+                          ]),
+                    ),
+                  ),
+                  Card(
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            const Image(
+                              image: AssetImage("assets/note_100px.png"),
+                              width: 100,
+                            ),
+                            Text(
+                              "My Notes",
+                              style: cardTextStyle,
+                            ),
+                          ]),
+                    ),
+                  ),
+                  Card(
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            const Image(
+                              image: AssetImage("assets/book_100px.png"),
+                              width: 100,
+                            ),
+                            Text(
+                              "Lecture Notes",
+                              style: cardTextStyle,
+                            ),
+                          ]),
+                    ),
+                  ),
+                ],
+              ),
             ),
           )
         ],

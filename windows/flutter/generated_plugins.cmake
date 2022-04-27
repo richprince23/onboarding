@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   permission_handler_windows
+  syncfusion_pdfviewer_windows
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)

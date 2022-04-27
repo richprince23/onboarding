@@ -41,7 +41,7 @@ dependencies:
   
   cloud_firestore: ^3.1.12
 
-  firebase_auth_oauth: ^1.2.0
+  # firebase_auth_oauth: ^1.2.0
 
   image_picker: ^0.8.5
 
@@ -52,12 +52,16 @@ dependencies:
   permission_handler: ^9.2.0
 
   path: ^1.8.0
+  # path: 
 
-  flutter_cached_pdfview: ^0.4.1
+  # flutter_cached_pdfview: ^0.4.1
 
   sqflite: ^2.0.2+1
 
   font_awesome_flutter: ^10.1.0
+
+  intl:
+  syncfusion_flutter_pdfviewer: ^20.1.50-beta
 
 dev_dependencies:
   flutter_test:

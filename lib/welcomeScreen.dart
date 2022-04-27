@@ -109,88 +109,93 @@ class WelcomeScreen extends StatelessWidget {
         ),
       ),
       body: Stack(children: [
-        Center(
-          child: Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                constants.color,
-                Colors.purple,
-              ],
-            )),
-            child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Center(
-                  child: Column(children: <Widget>[
-                    Image(
-                      image: AssetImage("assets/chef.png"),
-                      width: 80,
-                      height: 80,
+        SafeArea(
+          child: SingleChildScrollView(
+            child: Center(
+              child: Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    constants.color,
+                    Colors.purple,
+                  ],
+                )),
+                child: Column(
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Column(children: <Widget>[
+                        Image(
+                          image: AssetImage("assets/chef.png"),
+                          width: 80,
+                          height: 80,
+                        ),
+                        Text(
+                          "MY PORTAL",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                              fontFamily: "Raleway"),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.1,
+                        )
+                      ]),
                     ),
-                    Text(
-                      "MY PORTAL",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontFamily: "Raleway"),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      height: 50,
+                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                          color: Colors.pinkAccent,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: TextButton(
+                        child: const Text(
+                          "Login",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontFamily: "Raleway"),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginScreen()));
+                        },
+                      ),
                     ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.1,
-                    )
-                  ]),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: Colors.pinkAccent,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: TextButton(
+                        child: const Text(
+                          "Sign Up",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontFamily: "Raleway"),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const OnBoardingScreen()));
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: 50,
-                  margin: const EdgeInsets.symmetric(vertical: 10),
-                  decoration: BoxDecoration(
-                      color: Colors.pinkAccent,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: TextButton(
-                    child: const Text(
-                      "Login",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontFamily: "Raleway"),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginScreen()));
-                    },
-                  ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      color: Colors.pinkAccent,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: TextButton(
-                    child: const Text(
-                      "Sign Up",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontFamily: "Raleway"),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const OnBoardingScreen()));
-                    },
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         )

@@ -12,92 +12,95 @@ class appDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GFDrawer(
-      child: Container(
-        margin: const EdgeInsets.all(10),
-        child: Column(children: [
-          // GFDrawerHeader()
-          UserAccountsDrawerHeader(
-              decoration: BoxDecoration(
-                color: constants.color,
+    return SafeArea(
+      child: GFDrawer(
+        child: Container(
+          margin: const EdgeInsets.all(10),
+          child: Column(children: [
+            // GFDrawerHeader()
+            UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                  color: constants.color,
+                ),
+                currentAccountPicture: const CircleAvatar(
+                  child: Text("Avatar"),
+                  radius: 25,
+                ),
+                accountName: Text(constants.curUser!.displayName.toString()),
+                accountEmail: Text(constants.curUser!.email.toString())
+                // accountEmail: Text("aaa@aaa.com")),
+                // accountName: Text("James Sakyi"),
+                ),
+            ListTile(
+              leading: const Icon(
+                Icons.info,
+                color: Color.fromRGBO(117, 64, 237, 1),
               ),
-              currentAccountPicture: const CircleAvatar(
-                backgroundImage: AssetImage("chef.png"),
-                radius: 25,
+              title: const Text(
+                "Profile",
+                style: TextStyle(
+                    color: Color.fromRGBO(117, 64, 237, 1),
+                    fontFamily: "Raleway",
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500),
               ),
-              // accountName: Text(Constants().curUser!.displayName.toString()),
-              // accountEmail: Text(Constants().curUser!.email.toString())
-              accountName: Text("James Sakyi"),
-              accountEmail: Text("aaa@aaa.com")),
-          ListTile(
-            leading: const Icon(
-              Icons.info,
-              color: Color.fromRGBO(117, 64, 237, 1),
+              onTap: () {
+                print("addda");
+              },
             ),
-            title: const Text(
-              "Profile",
-              style: TextStyle(
-                  color: Color.fromRGBO(117, 64, 237, 1),
-                  fontFamily: "Raleway",
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500),
+            ListTile(
+              leading: const Icon(
+                Icons.person,
+                color: Color.fromRGBO(117, 64, 237, 1),
+              ),
+              title: const Text(
+                "Account",
+                style: TextStyle(
+                    color: Color.fromRGBO(117, 64, 237, 1),
+                    fontFamily: "Raleway",
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500),
+              ),
+              onTap: () {
+                print("addda");
+              },
             ),
-            onTap: () {
-              print("addda");
-            },
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.person,
-              color: Color.fromRGBO(117, 64, 237, 1),
+            ListTile(
+              leading: const Icon(
+                Icons.settings,
+                color: Color.fromRGBO(117, 64, 237, 1),
+              ),
+              title: const Text(
+                "Settings",
+                style: TextStyle(
+                    color: Color.fromRGBO(117, 64, 237, 1),
+                    fontFamily: "Raleway",
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500),
+              ),
+              onTap: () {
+                print("addda");
+              },
             ),
-            title: const Text(
-              "Account",
-              style: TextStyle(
-                  color: Color.fromRGBO(117, 64, 237, 1),
-                  fontFamily: "Raleway",
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500),
+            ListTile(
+              leading: const Icon(
+                Icons.exit_to_app,
+                color: Color.fromRGBO(117, 64, 237, 1),
+              ),
+              title: const Text(
+                "Exit",
+                style: TextStyle(
+                    color: Color.fromRGBO(117, 64, 237, 1),
+                    fontFamily: "Raleway",
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500),
+              ),
+              onTap: () {
+                exit(1);
+              },
             ),
-            onTap: () {
-              print("addda");
-            },
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.settings,
-              color: Color.fromRGBO(117, 64, 237, 1),
-            ),
-            title: const Text(
-              "Settings",
-              style: TextStyle(
-                  color: Color.fromRGBO(117, 64, 237, 1),
-                  fontFamily: "Raleway",
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500),
-            ),
-            onTap: () {
-              print("addda");
-            },
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.exit_to_app,
-              color: Color.fromRGBO(117, 64, 237, 1),
-            ),
-            title: const Text(
-              "Exit",
-              style: TextStyle(
-                  color: Color.fromRGBO(117, 64, 237, 1),
-                  fontFamily: "Raleway",
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500),
-            ),
-            onTap: () {
-              exit(1);
-            },
-          ),
-        ]),
+          ]),
+        ),
       ),
     );
   }

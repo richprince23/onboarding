@@ -4,7 +4,7 @@ import 'package:onboarding/homepage.dart';
 // import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:firebase_auth_oauth/firebase_auth_oauth.dart';
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 // import 'package:flutter/services.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   Color color = const Color.fromRGBO(117, 64, 237, 1);
   FirebaseAuth auth = FirebaseAuth.instance;
-
+  bool isLoading = false;
   String imageUrl = "assets/";
 
   final keys = GlobalKey<FormState>();
@@ -46,7 +46,6 @@ class _LoginScreenState extends State<LoginScreen> {
               height: MediaQuery.of(context).size.height,
               decoration: constants.boxDecoration),
           Center(
-            // child: Image(image: AssetImage("chef.png")),
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.7,
               child: SingleChildScrollView(
@@ -146,17 +145,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                 onPressed: () async {
                                   if (keys.currentState!.validate()) {
                                     // Future<void> login() async {
+                                    // setState(() {
+                                    //   isLoading = true;
+                                    // });
+                                    showLoadDialog(context);
                                     try {
                                       await auth
                                           .signInWithEmailAndPassword(
                                               email: _email.text,
                                               password: _pass.value.toString())
                                           .then((value) => {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            const HomePage()))
+                                                Navigator.popAndPushNamed(
+                                                    context, '/home')
                                               });
                                     } on FirebaseAuthException catch (e) {
                                       if (e.code == 'user-not-found') {
@@ -186,6 +186,28 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  showLoadDialog(BuildContext context) {
+    //set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      content: Container(
+        child: Center(
+          child: const CircularProgressIndicator(),
+        ),
+      ),
+    );
+    showDialog(
+      //prevent outside touch
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        //prevent Back button press
+        return alert;
+      },
     );
   }
 }
