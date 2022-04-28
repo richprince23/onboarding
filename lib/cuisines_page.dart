@@ -15,8 +15,7 @@ class _CuisineScreenState extends State<CuisineScreen> {
   bool loading = false;
   getData() async {
     loading = true;
-    var res =
-        await http.get(Uri.http('http://localhost:8000/api/cuisines', '16'));
+    var res = await http.get(Uri.https('https://bukyia.com/', 'api/cuisines'));
     var jsonData = jsonDecode(res.body);
 
     List<Cuisine> cuzList = [];

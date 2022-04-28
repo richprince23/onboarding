@@ -35,7 +35,7 @@ class appHead extends StatelessWidget {
         // ),
         const CircleAvatar(
             radius: 20,
-            backgroundImage: AssetImage("chef.png"),
+            backgroundImage: AssetImage("assets/chef.png"),
             backgroundColor: Colors.pinkAccent),
       ],
     );

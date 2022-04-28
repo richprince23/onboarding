@@ -3,11 +3,11 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:onboarding/login_screen.dart';
+// import 'package:onboarding/login_screen.dart';
 import 'package:onboarding/profile.dart';
 import 'app_head.dart';
 import 'app_drawer.dart';
-import 'constants.dart';
+import 'constants.dart' as constants;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Color color = const Color.fromRGBO(117, 64, 237, 1);
 
-  User? _user = FirebaseAuth.instance.currentUser;
+  final User? curUser = FirebaseAuth.instance.currentUser;
 
   TextStyle cardTextStyle = const TextStyle(
       color: Colors.black,

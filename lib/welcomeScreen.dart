@@ -114,14 +114,14 @@ class WelcomeScreen extends StatelessWidget {
             child: Center(
               child: Container(
                 alignment: Alignment.center,
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                     gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
                     constants.color,
-                    Colors.purple,
+                    Colors.white60,
                   ],
                 )),
                 child: Column(
@@ -131,11 +131,11 @@ class WelcomeScreen extends StatelessWidget {
                     Center(
                       child: Column(children: <Widget>[
                         Image(
-                          image: AssetImage("assets/chef.png"),
-                          width: 80,
-                          height: 80,
+                          image: AssetImage("assets/course_100px.png"),
+                          width: MediaQuery.of(context).size.height * 0.2,
+                          height: MediaQuery.of(context).size.height * 0.2,
                         ),
-                        Text(
+                        const Text(
                           "MY PORTAL",
                           style: TextStyle(
                               color: Colors.white,

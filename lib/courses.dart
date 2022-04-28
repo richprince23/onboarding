@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:onboarding/constants.dart' as constants;
-import 'package:path/path.dart';
-import 'package:http/http.dart' as http;
+
+import 'models/courses_db.dart';
+import 'db/portal_database.dart';
 
 class ManageCourses extends StatefulWidget {
   const ManageCourses({Key? key}) : super(key: key);
@@ -34,29 +35,86 @@ class _ManageCoursesState extends State<ManageCourses> {
     '800',
     '900'
   ];
-  List<Course> courses = [];
+
+  late List<Course> courses;
   List<Course> courseList = [];
-
-  addCourse() async {
-    if (keys.currentState!.validate()) {
-      int index = courses.length;
-
-      Course course = Course(
-          id: index + 1,
-          uid: 1,
-          courseCode: _cCode.text,
-          courseTitle: _cTitle.text,
-          creditHours: _cCHours.text,
-          level: levelValue,
-          semester: semValue);
-      courseList.add(course);
-      setState(() {
-        courses = courseList;
-      });
-    }
-  }
+  bool isLoading = false;
 
   var semValue, levelValue;
+
+  newCourse() async {
+    //   if (keys.currentState!.validate()) {
+    //     // int index = courses.length;
+    Course course = Course(
+      
+      courseCode: _cCode.text,
+      courseTitle: _cTitle.text,
+      creditHours: _cCHours.text,
+      level: levelValue.toString(),
+      semester: semValue.toString(),
+    );
+
+    PortalDatabase.instance.addCourse(course);
+    //     // courseList.add(course);
+    //     // setState(() {
+    //     //   courses = courseList;
+    //     // });
+    //   }
+  }
+
+  readCourse() {
+    var res = PortalDatabase.instance.getCourse(0);
+    setState(() {
+      // courses.add(res);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    readCourses();
+  }
+
+  Future readCourses() async {
+    setState(() {
+      isLoading = true;
+    });
+    courses = await PortalDatabase.instance.getCourses();
+
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  Widget buildCourses() => ListView.builder(
+      itemCount: courses.length,
+      itemBuilder: (context, int index) {
+        var course = courses[index];
+        return GFListTile(
+          color: Colors.white60,
+          padding: const EdgeInsets.all(8),
+          margin: const EdgeInsets.symmetric(vertical: 2),
+          // style: ListTileStyle.list,
+          // textColor: constants.color,
+          description: Text("Level: " +
+              course.level +
+              course.semester +
+              " Credit Hours: " +
+              course.creditHours),
+          subTitle: Text(course.courseCode),
+          titleText:
+              course.courseTitle, // replace with course code and semester
+          title: Text(
+            course.courseCode,
+            style: const TextStyle(fontSize: 16),
+          ),
+          onTap: () {
+            print(course.courseTitle);
+          },
+        );
+        // : GFListTile();
+      });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,32 +141,11 @@ class _ManageCoursesState extends State<ManageCourses> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: ListView.builder(
-            itemCount: courses.length,
-            itemBuilder: (context, int index) {
-              return GFListTile(
-                color: Colors.white60,
-                padding: const EdgeInsets.all(8),
-                margin: const EdgeInsets.symmetric(vertical: 2),
-                // style: ListTileStyle.list,
-                // textColor: constants.color,
-                description: Text("Level: " +
-                    courses[index].level +
-                    courses[index].semester +
-                    " Credit Hours: " +
-                    courses[index].creditHours),
-                subTitle: Text(courses[index].courseCode),
-                titleText: courses[index]
-                    .courseTitle, // replace with course code and semester
-                title: Text(
-                  courses[index].courseCode,
-                  style: const TextStyle(fontSize: 16),
-                ),
-                onTap: () {
-                  print(courses[index].courseTitle);
-                },
-              );
-            }),
+        child: isLoading
+            ? Center(child: CircularProgressIndicator())
+            : courses.isEmpty
+                ? Text("No courses added")
+                : buildCourses(),
       ),
     );
   }
@@ -210,8 +247,8 @@ class _ManageCoursesState extends State<ManageCourses> {
                           ),
                           child: TextButton(
                               onPressed: () async {
-                                // save and close
-                                await addCourse();
+                                await newCourse();
+
                                 Navigator.of(context).pop();
                               },
                               child: const Text(
@@ -260,27 +297,27 @@ class CustomField extends StatelessWidget {
   }
 }
 
-class Course {
-  var courseCode;
+// class Course {
+//   var courseCode;
 
-  var courseTitle;
+//   var courseTitle;
 
-  var creditHours;
+//   var creditHours;
 
-  var id;
+//   var id;
 
-  var semester;
+//   var semester;
 
-  var uid;
+//   var uid;
 
-  var level;
+//   var level;
 
-  Course(
-      {this.id,
-      this.uid,
-      this.courseCode,
-      this.courseTitle,
-      this.level,
-      this.semester,
-      this.creditHours});
-}
+//   Course(
+//       {this.id,
+//       this.uid,
+//       this.courseCode,
+//       this.courseTitle,
+//       this.level,
+//       this.semester,
+//       this.creditHours});
+// }

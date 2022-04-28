@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onboarding/courses.dart';
+import 'package:onboarding/cuisines_page.dart';
 import 'package:onboarding/login_screen.dart';
 import 'package:onboarding/onBoardingScreen.dart';
 import 'package:onboarding/profile.dart';
@@ -38,13 +39,13 @@ class MyApp extends StatelessWidget {
       // home: const WelcomeScreen(),
       initialRoute: '/',
       routes: {
-        '/': (context) => WelcomeScreen(),
+        '/': (context) => const WelcomeScreen(),
         '/profile': (context) => Profile(),
-        '/login': (context) => LoginScreen(),
-        '/signup': (context) => OnBoardingScreen(),
-        '/home': (context) => HomePage(),
-        '/startup': (context) => WelcomeScreen(),
-        '/courses': (context) => ManageCourses(),
+        '/login': (context) => const LoginScreen(),
+        '/signup': (context) => const OnBoardingScreen(),
+        '/home': (context) => const HomePage(),
+        '/startup': (context) => const WelcomeScreen(),
+        '/courses': (context) => const ManageCourses(),
       },
     );
   }
