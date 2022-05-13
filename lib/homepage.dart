@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:onboarding/db/portal_database.dart';
 // import 'package:onboarding/login_screen.dart';
 import 'package:onboarding/profile.dart';
 import 'app_head.dart';
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   Color color = const Color.fromRGBO(117, 64, 237, 1);
 
   final User? curUser = FirebaseAuth.instance.currentUser;
-
+  
   TextStyle cardTextStyle = const TextStyle(
       color: Colors.black,
       fontFamily: "Raleway",

@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: const WelcomeScreen(),
-      initialRoute: '/',
+      initialRoute: '/home',
       routes: {
         '/': (context) => const WelcomeScreen(),
         '/profile': (context) => Profile(),

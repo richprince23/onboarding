@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -14,7 +16,7 @@ class PortalDatabase {
     if (_database != null) {
       return _database!;
     } else {
-      _database = await _initDB('portals.db');
+      _database = await _initDB('portal1.db');
       return _database!;
     }
   }
@@ -66,7 +68,9 @@ class PortalDatabase {
     final db = await instance.database;
 
     final results = await db.query(coursesTable);
+    inspect(results);
     return results.map((json) => Course.fromJson(json)).toList();
+
     // if (results.isNotEmpty) {
     //   return Course.fromJson(results.first);
     // } else {

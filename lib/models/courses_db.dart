@@ -34,15 +34,15 @@ class Course {
         courseCode: json[CourseFields.courseCode],
         courseTitle: json[CourseFields.courseTitle] as String?,
         semester: json[CourseFields.semester] as String?,
-        level: json[CourseFields.level] as int?,
-        creditHours: json[CourseFields.creditHours] as int?);
+        level: json[CourseFields.level],
+        creditHours: json[CourseFields.creditHours]);
   }
 
   Course copy(
       {var id,
       var courseCode,
       var courseTitle,
-      var creditHours,
+      dynamic creditHours,
       var semester,
       // var createdAt,
       var level}) {
@@ -57,15 +57,15 @@ class Course {
 }
 
 class CourseFields {
-  static final String courseCode = 'code';
+  static var courseCode = 'code';
 
-  static final String courseTitle = 'title';
+  static String courseTitle = 'title';
 
   static var creditHours = 'hours';
 
-  static final String id = 'id';
+  static var id = 'id';
 
-  static final String semester = "semester";
+  static String semester = "semester";
 
   // static final String createdAt = "created_at";
 

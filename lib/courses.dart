@@ -43,23 +43,24 @@ class _ManageCoursesState extends State<ManageCourses> {
   var semValue, levelValue;
 
   newCourse() async {
-    //   if (keys.currentState!.validate()) {
-    //     // int index = courses.length;
-    Course course = Course(
-      
-      courseCode: _cCode.text,
-      courseTitle: _cTitle.text,
-      creditHours: _cCHours.text,
-      level: levelValue.toString(),
-      semester: semValue.toString(),
-    );
+    if (keys.currentState!.validate()) {
+      //     // int index = courses.length;
+      Course course = Course(
+        courseCode: _cCode.text,
+        courseTitle: _cTitle.text,
+        creditHours: _cCHours.text,
+        level: levelValue.toString(),
+        semester: semValue.toString(),
+      );
 
-    PortalDatabase.instance.addCourse(course);
-    //     // courseList.add(course);
-    //     // setState(() {
-    //     //   courses = courseList;
-    //     // });
-    //   }
+      PortalDatabase.instance.addCourse(course);
+      // courseList.add(course);
+      // setState(() {
+      //   courses = courseList;
+      // });
+      print("course added");
+      await readCourses();
+    }
   }
 
   readCourse() {
@@ -73,6 +74,7 @@ class _ManageCoursesState extends State<ManageCourses> {
   void initState() {
     super.initState();
     readCourses();
+    // PortalDatabase.instance.delDB();
   }
 
   Future readCourses() async {
@@ -91,21 +93,19 @@ class _ManageCoursesState extends State<ManageCourses> {
       itemBuilder: (context, int index) {
         var course = courses[index];
         return GFListTile(
-          color: Colors.white60,
-          padding: const EdgeInsets.all(8),
-          margin: const EdgeInsets.symmetric(vertical: 2),
-          // style: ListTileStyle.list,
-          // textColor: constants.color,
+          color: ThemeData.light().secondaryHeaderColor,
+          padding: const EdgeInsets.all(10),
+          margin: const EdgeInsets.symmetric(vertical: 1),
           description: Text("Level: " +
-              course.level +
+              course.level.toString()+" " +
               course.semester +
               " Credit Hours: " +
-              course.creditHours),
-          subTitle: Text(course.courseCode),
+              course.creditHours.toString() +" "),
+          subTitle: Text(course.courseCode.toString()),
           titleText:
               course.courseTitle, // replace with course code and semester
           title: Text(
-            course.courseCode,
+            course.courseCode.toString(),
             style: const TextStyle(fontSize: 16),
           ),
           onTap: () {
