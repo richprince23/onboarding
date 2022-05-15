@@ -109,10 +109,10 @@ class _ManageCoursesState extends State<ManageCourses> {
             style: const TextStyle(fontSize: 16),
           ),
           onTap: () {
-            print(course.courseTitle);
+            
           },
         );
-        // : GFListTile();
+        
       });
 
   @override
@@ -296,28 +296,3 @@ class CustomField extends StatelessWidget {
     );
   }
 }
-
-// class Course {
-//   var courseCode;
-
-//   var courseTitle;
-
-//   var creditHours;
-
-//   var id;
-
-//   var semester;
-
-//   var uid;
-
-//   var level;
-
-//   Course(
-//       {this.id,
-//       this.uid,
-//       this.courseCode,
-//       this.courseTitle,
-//       this.level,
-//       this.semester,
-//       this.creditHours});
-// }

@@ -71,3 +71,4 @@ class CourseFields {
 
   static var level = "level";
 }
+

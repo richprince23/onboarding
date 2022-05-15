@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -13,60 +14,48 @@ class CuisineScreen extends StatefulWidget {
 
 class _CuisineScreenState extends State<CuisineScreen> {
   bool loading = false;
-  getData() async {
+  List<Cuisine> cuzList = [];
+
+  Future getData() async {
     loading = true;
-    var res = await http.get(Uri.https('https://bukyia.com/', 'api/cuisines'));
+    var res = await http.get(Uri.https('www.bukyia.com', 'api/cuisines'));
     var jsonData = jsonDecode(res.body);
 
-    List<Cuisine> cuzList = [];
     for (var i in jsonData) {
       Cuisine cuz = Cuisine(
           i['id'], i['userID'], i['cuisine'], i['created_at'], i['updated_at']);
       cuzList.add(cuz);
-      print(cuzList.length);
-      print("fsdfds");
-
-      return cuzList;
     }
+    // print(cuzList.length);
+    // print(cuzList[0].cuisine);
+    return cuzList;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Cuisines"),
-      ),
-      body: Center(
-          child: Column(
-        children: [
-          TextButton(
+        appBar: AppBar(
+          title: Text("Cuisines"),
+          actions: [
+            IconButton(
               onPressed: () {
                 getData();
-                // setState((){
-                //   loading =false;
-                // });
+                setState(() {
+                  loading = false;
+                });
               },
-              child: Text("Load Data")),
-          // FutureBuilder(
-          //     future: getData(),
-          //     builder: (context, snapshot) {
-          //       if (snapshot.data == null)
-          //         return const CircularProgressIndicator(
-          //           color: Colors.pink,
-          //           value: 80,
-          //         );
-
-          //       return ListView.builder(
-          //           // itemCount: snapshot.data!.length,
-          //           itemBuilder: ((context, index) {
-          //             return ListTile(
-          //               title: Text(snapshot.data![index].userID),
-          //             );
-          //           }));
-          //     })
-        ],
-      )),
-    );
+              icon: Icon(Icons.add),
+            )
+          ],
+        ),
+        body: ListView.builder(
+            primary: false,
+            itemCount: cuzList.length,
+            itemBuilder: ((context, index) {
+              return ListTile(
+                title: Text(cuzList[index].cuisine),
+              );
+            })));
   }
 }
 

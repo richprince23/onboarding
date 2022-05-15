@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:onboarding/add_note.dart';
 import 'package:onboarding/courses.dart';
-import 'package:onboarding/cuisines_page.dart';
 import 'package:onboarding/login_screen.dart';
+import 'package:onboarding/my_notes.dart';
 import 'package:onboarding/onBoardingScreen.dart';
 import 'package:onboarding/profile.dart';
+import 'package:onboarding/read_note.dart';
 import 'welcomeScreen.dart';
 import 'homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,15 +20,16 @@ Future<void> main() async {
       messagingSenderId: "XXX",
       projectId: "my-portall",
     ));
-    runApp(const MyApp());
+    runApp(MyApp());
   } on Exception catch (e) {
-    // TODO
+    print('Error: $e');
   }
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+  MyApp({Key? key}) : super(key: key);
+  late int noteID;
+  final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -37,6 +40,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: const WelcomeScreen(),
+      navigatorObservers: [routeObserver],
       initialRoute: '/home',
       routes: {
         '/': (context) => const WelcomeScreen(),
@@ -46,6 +50,9 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
         '/startup': (context) => const WelcomeScreen(),
         '/courses': (context) => const ManageCourses(),
+        '/notes': (context) => MyNotes(),
+        '/add-note': (context) => const AddNoteScreen(),
+        // '/read-note': (context) => ReadOnlyPage(noteID: noteID),
       },
     );
   }
