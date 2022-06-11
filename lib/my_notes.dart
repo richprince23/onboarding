@@ -107,7 +107,7 @@ class _MyNotesState extends State<MyNotes> with RouteAware {
                 onTap: () async {
                   // Navigator.pushNamed(context, '/read-note',
                   //     arguments: snapshot.data[index].id!);
-                  print(snapshot.data[index].id);
+                  // print(snapshot.data[index].id);
                   Navigator.of(context).pop();
                   Navigator.push(
                       context,

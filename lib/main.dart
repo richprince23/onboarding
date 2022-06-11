@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onboarding/add_course.dart';
 import 'package:onboarding/add_note.dart';
 import 'package:onboarding/courses.dart';
 import 'package:onboarding/login_screen.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
       ),
       // home: const WelcomeScreen(),
       navigatorObservers: [routeObserver],
-      initialRoute: '/home',
+      initialRoute: '/add-course',
       routes: {
         '/': (context) => const WelcomeScreen(),
         '/profile': (context) => Profile(),
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
         '/notes': (context) => MyNotes(),
         '/add-note': (context) => const AddNoteScreen(),
         // '/read-note': (context) => ReadOnlyPage(noteID: noteID),
+        '/add-course': (context) => const AddCoursePage(),
       },
     );
   }

@@ -153,7 +153,7 @@ class WelcomeScreen extends StatelessWidget {
                       margin: const EdgeInsets.symmetric(vertical: 10),
                       decoration: BoxDecoration(
                           color: Colors.pinkAccent,
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(25)),
                       child: TextButton(
                         child: const Text(
                           "Login",
@@ -175,7 +175,7 @@ class WelcomeScreen extends StatelessWidget {
                       height: 50,
                       decoration: BoxDecoration(
                           color: Colors.pinkAccent,
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(25)),
                       child: TextButton(
                         child: const Text(
                           "Sign Up",
